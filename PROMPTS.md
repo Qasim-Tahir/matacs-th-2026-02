@@ -24,7 +24,7 @@ Rules:
 2. Do not score, rank, compare, or recommend.
 3. For every value, copy an exact quote of the supporting text and give its page number.
 4. If the proposal does not state a value, use status "not_found", value null and quote null.
-5. If the wording is unclear or only partly answers the criterion, use status "ambiguous", give the quote, and explain why in note.
+5. If the wording is unclear or only partly answers the criterion, use status "ambiguous", give the value as stated with its quote, and explain why in note.
 6. Record who a claim applies to. A licence held by a subcontractor, or one still to be confirmed, is not held by the bidder.
 7. A claim that someone is named is not a name. Put a person's name in value only if the name appears in the text.
 8. Keep vague promises as vague. "After a site assessment" is not a number of weeks.
