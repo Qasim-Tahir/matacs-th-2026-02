@@ -8,7 +8,7 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MODEL = os.environ.get("TRIAGE_MODEL", "claude-opus-5-5")
+MODEL = os.environ.get("TRIAGE_MODEL", "qwen/qwen3.8-27b")
 SCAN_PATTERNS = [
     r"automated review", r"rank (it|this)", r"full marks", r"pre-approved",
     r"ignore (all|any|previous)", r"(system|assistant) prompt",
@@ -40,22 +40,22 @@ def load_prompts():
 
 
 def extract_with_ai(text, config):
-    import anthropic
+    from groq import Groq
     system, user = load_prompts()
     criteria = [{k: v for k, v in c.items() if k in ("id", "looking_for", "items")} for c in config["criteria"]]
     user = (user.replace("{category_name}", config["category"])
             .replace("{project_details}", config["project_details"])
             .replace("{criteria_json}", json.dumps(criteria, indent=2))
             .replace("{proposal_text}", text))
-    with anthropic.Anthropic().messages.stream(
-        model=MODEL, max_tokens=16000, system=system,
-        output_config={"effort": "high"},
-        messages=[{"role": "user", "content": user}],
-    ) as stream:
-        response = stream.get_final_message()
-    if response.stop_reason != "end_turn":
-        raise RuntimeError(f"Extraction stopped early: {response.stop_reason}")
-    answer = "".join(b.text for b in response.content if b.type == "text")
+    response = Groq().chat.completions.create(
+        model=MODEL, temperature=0, max_completion_tokens=8000,
+        response_format={"type": "json_object"}, reasoning_effort="default", reasoning_format="hidden",
+        messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
+    )
+    choice = response.choices[0]
+    if choice.finish_reason != "stop":
+        raise RuntimeError(f"Extraction stopped early: {choice.finish_reason}")
+    answer = choice.message.content
     return json.loads(answer[answer.index("{"):answer.rindex("}") + 1])
 
 

@@ -5,7 +5,7 @@ The tool uses one AI prompt, for extraction. The AI finds facts and quotes. It d
 ## Settings
 
 - Model and prompt version are pinned and saved in the audit log for every run.
-- Temperature is 0 where the model allows it. The prototype's default model does not accept this setting, so stored results provide the repeatability.
+- Temperature is 0.
 - The response must match the JSON format below. Anything else is rejected.
 - Each proposal is sent on its own, so one proposal cannot affect another.
 - The result is cached by a hash of the file, the prompt version and the criteria version.
