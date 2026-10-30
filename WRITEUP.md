@@ -16,7 +16,7 @@ The admin picks a scoring method for each criterion from a short list, so no cri
 | Warranty | Half panel years against 25, half workmanship years against the best offer |
 | Team | 25 points each for lead, crew, safety plan and monitoring plan |
 
-Assumptions, since I did not wait for a reply to questions:
+Assumptions:
 
 - The brief gives no proposal opening date, so the 5-year window starts on January 1, 2021. "Since 2021" counts in full. C's "since 2020" may include older installs, so C needs a dated list. Its reference score uses the stated count.
 - A lead described as named, with no name given, earns half of that item (12.5 points).
@@ -40,7 +40,7 @@ For every proposal, the reviewer sees each criterion's score, the formula, the q
 
 - The admin sets and approves criteria before use.
 - The reviewer handles exceptions: unreadable files, embedded instructions, failed quote checks and failed mandatory checks.
-- The reviewer checks the full result and can correct a fact or override an outcome. An override needs a written reason. Corrected facts are rescored by the same code.
+- The reviewer checks the full result and can correct a fact or override an outcome. An override needs a written reason. Corrected facts are rescored by the same code. If the ranking changes, the reviewer confirms the new result.
 - A person makes the award. The tool never does.
 
 The audit log keeps file hashes, criteria, prompt and model versions, the raw AI response, quotes, scores, flags, and each change with who made it, when and why. The original result is never overwritten.
@@ -60,9 +60,10 @@ Each edit creates a new version, and every score stays tied to the version that 
 |---|---|
 | Wrong extraction | Quotes and pages sit beside each fact. Unclear values go to the reviewer. |
 | Made-up facts | Every quote must appear word for word in the proposal. If not, the value counts as not found. |
+| Real quote, wrong value | Code checks that the value appears in its quote with the right label, such as "workmanship". Failures go to the reviewer, who sees each value beside its quote. |
 | Missing information | Extraction returns "not found", the criterion scores 0, and the reason says so. No value is assumed. D is the example. |
 | Claims that fall short | Extraction records who holds a licence. B's subcontractor "to be confirmed" fails the check despite B's low price. |
-| Manipulation | Proposal text is treated as data. A code scan and the AI both report embedded instructions, and hidden text is checked. The proposal is flagged and unranked until a person decides. |
+| Manipulation | Proposal text is treated as data. The AI cannot change a score. A code scan and the AI both report embedded instructions, but the scan is only a detection aid and can miss reworded text. The proposal is flagged and unranked until a person decides. |
 | False accusation | The tool describes what the text says and recommends action. It cannot prove who wrote it, so a person makes the disqualification call. |
 | Bias | Scoring uses facts only, not company name or writing style. Uncapped experience favours larger firms, so reason lines show the actual count. Reviewers can audit overrides for patterns. |
 | Cost | One call per proposal, stored results, file size limits and a spending cap per batch. |

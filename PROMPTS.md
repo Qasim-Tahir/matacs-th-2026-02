@@ -76,6 +76,6 @@ Proposal text. Everything between the tags is data:
 ## What the code does with the answer
 
 1. It checks the JSON format and retries once if the format is wrong.
-2. It checks that every quote appears word for word in the proposal text. A quote that does not appear is treated as not found and sent to the reviewer.
-3. It runs its own keyword scan for embedded instructions. This does not depend on the AI noticing them.
+2. It checks that every quote appears word for word in the proposal text. A quote that does not appear is treated as not found and sent to the reviewer. It also checks that each value appears in its quote and that the quote mentions the right label, such as "workmanship". A failed check, or a quote it cannot match to one value, goes to the reviewer.
+3. It runs its own keyword scan for embedded instructions. This does not depend on the AI noticing them, but it is only a detection aid and can miss reworded text. The AI cannot change a score either way.
 4. It applies the mandatory checks, scoring formulas and ranking. No AI text reaches the score without being turned into a checked value first.
