@@ -28,7 +28,7 @@ Assumptions, since I did not wait for a reply to questions:
 
 AI does one job, which is reading unstructured text and pulling out facts with a quote and page number. Proposals word the same thing in different ways, and rules handle that badly.
 
-Everything else is plain code: PDF text reading, the instruction scan, quote checks, mandatory checks, scoring, ranking and logging. Those steps need the same answer every time, and arithmetic should never depend on a model. This also limits manipulation, because the AI has no power over a score.
+Everything else is plain code: PDF text reading, the instruction scan, quote checks, mandatory checks, scoring, ranking and logging. Those steps need the same answer every time, and arithmetic should never depend on a model. The AI has no power over a score.
 
 ## 2. Consistency and explainability
 
@@ -52,7 +52,7 @@ Each edit creates a new version, and every score stays tied to the version that 
 - Existing results stay visible but are marked out of date.
 - A weight change only needs the code to rerun, with no AI cost.
 - A new or reworded criterion needs extraction for that criterion only.
-- The reviewer sees old and new rankings side by side and confirms the change. Past awards keep their original version.
+- The reviewer sees old and new rankings side by side and confirms the change.
 
 ## 5. Risks
 
@@ -66,8 +66,7 @@ Each edit creates a new version, and every score stays tied to the version that 
 | False accusation | The tool describes what the text says and recommends action. It cannot prove who wrote it, so a person makes the disqualification call. |
 | Bias | Scoring uses facts only, not company name or writing style. Uncapped experience favours larger firms, so reason lines show the actual count. Reviewers can audit overrides for patterns. |
 | Cost | One call per proposal, stored results, file size limits and a spending cap per batch. |
-| Over-trust | The list is labelled as a recommendation, and the award stays with a person. |
 
 ## Sample result
 
-A ranks first (90.8), E second (71.6) and D third (67.9). B is ineligible because the bidder does not hold the licence. C is flagged. It would score 60.0 without the embedded instruction, but that figure is for reference only. The instruction comes first in C's reason because it raises a concern about how the bidder would behave on the project, however good the price.
+A ranks first (90.8), E second (71.6) and D third (67.9). B is ineligible because the bidder does not hold the licence. C is flagged. It would score 60.0 without the embedded instruction, but that figure is for reference only.
