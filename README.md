@@ -16,4 +16,4 @@ Time actually spent: About 60 to 70 minutes
 
 ## How I used AI tools
 
-I used Claude to walk through the brief, compare design options, and draft the diagram, prompt and write-up, then I reviewed the decisions and the result. I disagreed with its first draft of the reason for Proposal C, which led with what C would score without the embedded instruction. I changed it to lead with the manipulation attempt and its integrity risk, because a good price from a bidder who tries to game the evaluation is still a warning sign for the project.
+I used Claude to work through the brief and draft the diagram, prompt, write-up and prototype, used ChatGPT to critique the design, and reviewed the decisions and result myself. I disagreed with Claude's first draft of the reason for Proposal C, which led with its score without the embedded instruction, and changed it to lead with the manipulation attempt, because a good price from a bidder who games the evaluation is still a warning sign. I also rejected its alternative scoring ideas in favour of min-max scaling for price and timeline, and removed its 10-install experience cap because it hid real differences in experience.
