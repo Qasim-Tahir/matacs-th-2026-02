@@ -12,7 +12,7 @@ Time actually spent: About 60 to 70 minutes
 - [diagram/process-flow.png](diagram/process-flow.png): process flow from upload to ranked output
 - [PROMPTS.md](PROMPTS.md): the AI extraction prompt
 - [ranking.json](ranking.json): expected ranking of proposals A to E
-- [prototype/](prototype/README.md): optional script that runs the flow. I tested the checks, scoring and ranking on the samples using hand-written extraction files. It reproduces `ranking.json`. The live AI call has not been run, because I had no API key available.
+- [prototype/](prototype/README.md): optional script that runs the flow. A live run on Groq with `openai/gpt-oss-120b` matched `ranking.json` on every rank and status.
 
 ## How I used AI tools
 

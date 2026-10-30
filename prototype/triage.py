@@ -5,10 +5,18 @@ import hashlib
 import json
 import os
 import re
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-MODEL = os.environ.get("TRIAGE_MODEL", "qwen/qwen3.8-27b")
+ENV_FILE = ROOT / "prototype" / ".env"
+if ENV_FILE.exists():
+    for line in ENV_FILE.read_text().splitlines():
+        if "=" in line and not line.startswith("#"):
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip())
+MODEL = os.environ.get("TRIAGE_MODEL", "openai/gpt-oss-120b")
+REQUEST_GAP = 6  # seconds between AI calls, to stay under Groq rate limits
 SCAN_PATTERNS = [
     r"automated review", r"rank (it|this)", r"full marks", r"pre-approved",
     r"ignore (all|any|previous)", r"(system|assistant) prompt",
@@ -47,9 +55,9 @@ def extract_with_ai(text, config):
             .replace("{project_details}", config["project_details"])
             .replace("{criteria_json}", json.dumps(criteria, indent=2))
             .replace("{proposal_text}", text))
-    response = Groq().chat.completions.create(
+    response = Groq(max_retries=6).chat.completions.create(
         model=MODEL, temperature=0, max_completion_tokens=8000,
-        response_format={"type": "json_object"}, reasoning_effort="default", reasoning_format="hidden",
+        response_format={"type": "json_object"}, reasoning_effort="medium", reasoning_format="hidden",
         messages=[{"role": "system", "content": system}, {"role": "user", "content": user}],
     )
     choice = response.choices[0]
@@ -103,6 +111,8 @@ def validate(extraction, config, text):
             fact["items"] = list(items.values())
         else:
             check_entry(fact, cid, text, [], notes)
+            if fact["status"] == "ambiguous" and fact.get("value") is None:
+                notes.append(f"{cid}: unclear value needs a reviewer")
     return facts, notes
 
 
@@ -160,6 +170,7 @@ def main():
         else:
             extraction = extract_with_ai(text, config)
             stored.write_text(json.dumps(extraction, indent=2))
+            time.sleep(REQUEST_GAP)
         facts, notes = validate(extraction, config, squash(text))
         proposals[path.stem] = dict(
             facts=facts, notes=notes, scan=scan(text),
