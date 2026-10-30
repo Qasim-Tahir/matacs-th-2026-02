@@ -1,12 +1,12 @@
 {
   "version": 1,
   "category": "Commercial Solar Installation",
-  "project_details": "150 kW rooftop system on a warehouse. Budget ceiling and completion limit are listed in the criteria.",
+  "project_details": "Rooftop solar project. Budget ceiling and completion limit are listed in the criteria.",
   "criteria": [
-    {"id": "licence", "type": "mandatory", "rule": "held_by_bidder", "looking_for": "Ontario electrical contractor licence held by the bidder and stated in the proposal"},
+    {"id": "licence", "type": "mandatory", "rule": "held_by_bidder", "looking_for": "The bidder itself must hold an Ontario electrical contractor licence, and its proposal must say so"},
     {"id": "insurance", "type": "mandatory", "rule": "all_items", "looking_for": "WSIB clearance and $5M liability insurance, both confirmed",
      "items": [{"id": "wsib", "labels": ["wsib"]}, {"id": "liability", "labels": ["liability"]}]},
-    {"id": "experience", "type": "weighted", "weight": 30, "method": "share_of_best", "looking_for": "Number of commercial installs of 100 kW or more in the last 5 years (window starts 2021-01-01). Value is the count."},
+    {"id": "experience", "type": "weighted", "weight": 30, "method": "share_of_best", "looking_for": "Count of past commercial jobs sized 100 kW and up, completed since 2021-01-01. Value is the count."},
     {"id": "price", "type": "weighted", "weight": 25, "method": "gap_to_limit", "limit": 260000, "looking_for": "Total price in CAD. Value is the amount. Budget ceiling is 260000."},
     {"id": "timeline", "type": "weighted", "weight": 15, "method": "gap_to_limit", "limit": 16, "looking_for": "Weeks to complete from award. Value is the number of weeks. Limit is 16."},
     {"id": "warranty", "type": "weighted", "weight": 15, "method": "warranty", "panel_years": 25, "looking_for": "Panel and workmanship warranty length in years",
