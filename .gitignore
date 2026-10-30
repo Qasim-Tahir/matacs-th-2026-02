@@ -1,0 +1,14 @@
+# Private assessment source and working notes
+HANDOFF.md
+*Candidate_Brief*
+brief/
+samples/
+
+# Local credentials and generated files
+.env
+.env.*
+!.env.example
+__pycache__/
+*.pyc
+.venv/
+.DS_Store
