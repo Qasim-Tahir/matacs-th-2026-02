@@ -22,13 +22,13 @@ Assumptions:
 - A lead described as named, with no name given, earns half of that item (12.5 points).
 - The 16-week limit is not a pass/fail check, because the admin did not set it up as one. If it were, D would become ineligible through configuration alone.
 - C still counts toward the lowest price and schedule values because it passed the mandatory checks.
-- Prices are compared as stated. Only A and B say what their price covers, so a reviewer should confirm this before award.
+- Prices are compared as stated. Only A and B say what theirs covers.
 
 ## 1. AI vs. rules
 
 AI does one job, which is reading unstructured text and pulling out facts with a quote and page number. Proposals word the same thing in different ways, and rules handle that badly.
 
-Everything else is plain code: PDF text reading, the instruction scan, quote checks, mandatory checks, scoring, ranking and logging. Those steps need the same answer every time, and arithmetic should never depend on a model. The AI has no power over a score.
+Everything else is plain code: PDF text reading, the instruction scan, quote checks, mandatory checks, scoring, ranking and logging. Those steps need the same answer every time, and arithmetic should never depend on a model.
 
 ## 2. Consistency and explainability
 
@@ -64,7 +64,7 @@ Each edit creates a new version, and every score stays tied to the version that 
 | Missing information | Extraction returns "not found", the criterion scores 0, and the reason says so. No value is assumed. D is the example. |
 | Claims that fall short | Extraction records who holds a licence. B's subcontractor "to be confirmed" fails the check despite B's low price. |
 | Manipulation | Proposal text is treated as data. The AI cannot change a score. A code scan and the AI both report embedded instructions, but the scan is only a detection aid and can miss reworded text. The proposal is flagged and unranked until a person decides. |
-| False accusation | The tool describes what the text says and recommends action. It cannot prove who wrote it, so a person makes the disqualification call. |
+| False accusation | The tool cannot prove who wrote the text, so a person makes the disqualification call. |
 | Bias | Scoring uses facts only, not company name or writing style. Uncapped experience favours larger firms, so reason lines show the actual count. Reviewers can audit overrides for patterns. |
 | Cost | One call per proposal, stored results, file size limits and a spending cap per batch. |
 
