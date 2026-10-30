@@ -10,15 +10,15 @@ The admin picks a scoring method for each criterion from a short list, so no cri
 
 | Criterion | Method |
 |---|---|
-| Experience | 10 points per qualifying install, capped at 100 |
-| Price | Lowest eligible price divided by this price |
-| Timeline | Shortest stated schedule divided by this schedule. Missing, or over 16 weeks, scores 0 |
+| Experience | This qualifying install count divided by the highest eligible count, with no cap |
+| Price | Lowest eligible price scores 100, a price at the ceiling scores 0, and prices between sit in proportion |
+| Timeline | Shortest stated schedule scores 100, 16 weeks scores 0, and schedules between sit in proportion. Missing or longer also scores 0 |
 | Warranty | Half panel years against 25, half workmanship years against the best offer |
 | Team | 25 points each for lead, crew, safety plan and monitoring plan |
 
 Assumptions, since I did not wait for a reply to questions:
 
-- "Last 5 years" means 2021 onward, so "since 2021" counts. C's "since 2020" needs a dated list. Its reference score uses the stated count.
+- The brief gives no proposal opening date, so the 5-year window starts on January 1, 2021. "Since 2021" counts in full. C's "since 2020" may include older installs, so C needs a dated list. Its reference score uses the stated count.
 - A lead described as named, with no name given, earns half of that item (12.5 points).
 - The 16-week limit is not a pass/fail check, because the admin did not set it up as one. If it were, D would become ineligible through configuration alone.
 - C still counts toward the lowest price and schedule values because it passed the mandatory checks.
@@ -64,10 +64,10 @@ Each edit creates a new version, and every score stays tied to the version that 
 | Claims that fall short | Extraction records who holds a licence. B's subcontractor "to be confirmed" fails the check despite B's low price. |
 | Manipulation | Proposal text is treated as data. A code scan and the AI both report embedded instructions, and hidden text is checked. The proposal is flagged and unranked until a person decides. |
 | False accusation | The tool describes what the text says and recommends action. It cannot prove who wrote it, so a person makes the disqualification call. |
-| Bias | Scoring uses facts only, not company name or writing style. The experience cap stops size from dominating. Reviewers can audit overrides for patterns. |
+| Bias | Scoring uses facts only, not company name or writing style. Uncapped experience favours larger firms, so reason lines show the actual count. Reviewers can audit overrides for patterns. |
 | Cost | One call per proposal, stored results, file size limits and a spending cap per batch. |
 | Over-trust | The list is labelled as a recommendation, and the award stays with a person. |
 
 ## Sample result
 
-A ranks first (96.1), E second (89.8) and D third (74.4). B is ineligible because the bidder does not hold the licence. C is flagged. It would score 82.9 without the embedded instruction, but that figure is for reference only. The instruction comes first in C's reason because it raises a concern about how the bidder would behave on the project, however good the price.
+A ranks first (90.8), E second (71.6) and D third (67.9). B is ineligible because the bidder does not hold the licence. C is flagged. It would score 60.0 without the embedded instruction, but that figure is for reference only. The instruction comes first in C's reason because it raises a concern about how the bidder would behave on the project, however good the price.
